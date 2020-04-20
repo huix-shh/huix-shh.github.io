@@ -10,7 +10,7 @@
     
     
     
-    <title>about-me | Huix Space</title>
+    <title>2020_4_20 | Huix Space</title>
     <!-- inject:style -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <!-- endinject -->
@@ -152,23 +152,66 @@
     <div class="cube-content">
         <div class="cube-left">
             <div class="cube-article">
-    <h1 class="title">about-me</h1>
+    <h1 class="title">2020_4_20</h1>
     
     <div class="cube-article-header">
-        <div class="cube-article-date page">
+        <div class="cube-article-date">
             <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
             <!-- moment.js对象 -->
-            2020-03-08
+            2020-04-20
         </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+</div>
     </div>
     
     <div class="cube-article-content cube-markdown">
         
-        <p>name:huix</p>
-<p><a href="mailto:email:18844067935@163.com">email:18844067935@163.com</a></p>
+        <p>reference from <a href="http://blog.chinaunix.net/uid-8599612-id-6788.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-8599612-id-6788.html</a>
+在Windows下可以通过生成资源文件把图片等文件直接编译进程序，在Linux如何完成这件事呢？
+要把文件直接编译进目标程序，首先要把它转为对应的目标文件的格式，才能链接进程序，linux有两个工具可以完成这件事情：ld 和 objcopy。</p>
+<p>举例说明，现在有foo.jpg图片要编译进程序test.c
+　ld版本：
+　　ld -r -b binary foo.jpg -o foo.ld
+gcc test.c foo.ld -o test</p>
+<pre><code>objcopy版本：
+</code></pre>
+<p>objcopy -I binary -O elf32-i386 -B i386 foo.jpg jpg.o
+gcc test.c foo.o -o test</p>
+<pre><code>按照上边命令执行仅仅是把文件编译进程序了，如何引用它呢？
+</code></pre>
+<p>这两个工具生成的目标文件都遵循相同的符号命名规则，会生成以下三个符号：
+　_binary_foo_jpg_start　：图片的开始地址
+　_binary_foo_jpg_end　　：图片的的末端过一位置
+_binary_foo_jpg_size　　：图片的大小，强转为size_t使用
+红色部分是文件名，点被转为下划线，在程序中直接extern这三个符号就可以使用了，
+　extern char _binary_foo_jpg_start[];
+　extern char _binary_foo_jpg_end[];
+　extern char _binary_foo_jpg_size[];</p>
+<p>图片的大小有两种方法获得：
+　size_t　picSize1 = (size_t)_binary_foo_jpg_size;
+size_t   picSize2 = _binary_foo_jpg_end - _binary_foo_jpg_start;</p>
 
     </div>
 </div>
+
+<div class="cube-article-nav">
+    <ul>
+        
+        
+        <li class="next">
+            <a href="/2020/03/08/2020-ww11/">
+                所见所闻 2020 WW11
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
 
 
 

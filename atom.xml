@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Huix Space</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huix-shh.github.io/"/>
-  <updated>2020-03-08T04:23:22.465Z</updated>
+  <updated>2020-04-20T15:17:42.748Z</updated>
   <id>https://huix-shh.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>huihuang.shi</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2020_4_20</title>
+    <link href="https://huix-shh.github.io/2020/04/20/2020_4_20/"/>
+    <id>https://huix-shh.github.io/2020/04/20/2020_4_20/</id>
+    <published>2020-04-20T15:17:42.748Z</published>
+    <updated>2020-04-20T15:17:42.748Z</updated>
+    
+    <content type="html"><![CDATA[<p>reference from <a href="http://blog.chinaunix.net/uid-8599612-id-6788.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-8599612-id-6788.html</a>在Windows下可以通过生成资源文件把图片等文件直接编译进程序，在Linux如何完成这件事呢？要把文件直接编译进目标程序，首先要把它转为对应的目标文件的格式，才能链接进程序，linux有两个工具可以完成这件事情：ld 和 objcopy。</p><p>举例说明，现在有foo.jpg图片要编译进程序test.c　ld版本：　　ld -r -b binary foo.jpg -o foo.ldgcc test.c foo.ld -o test</p><pre><code>objcopy版本：</code></pre><p>objcopy -I binary -O elf32-i386 -B i386 foo.jpg jpg.ogcc test.c foo.o -o test</p><pre><code>按照上边命令执行仅仅是把文件编译进程序了，如何引用它呢？</code></pre><p>这两个工具生成的目标文件都遵循相同的符号命名规则，会生成以下三个符号：　_binary_foo_jpg_start　：图片的开始地址　_binary_foo_jpg_end　　：图片的的末端过一位置_binary_foo_jpg_size　　：图片的大小，强转为size_t使用红色部分是文件名，点被转为下划线，在程序中直接extern这三个符号就可以使用了，　extern char _binary_foo_jpg_start[];　extern char _binary_foo_jpg_end[];　extern char _binary_foo_jpg_size[];</p><p>图片的大小有两种方法获得：　size_t　picSize1 = (size_t)_binary_foo_jpg_size;size_t   picSize2 = _binary_foo_jpg_end - _binary_foo_jpg_start;</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;reference from &lt;a href=&quot;http://blog.chinaunix.net/uid-8599612-id-6788.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://blog.chinaunix.net/uid-
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>所见所闻 2020 WW11</title>
